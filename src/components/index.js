@@ -6,50 +6,50 @@
 //      children: []
 //}
 
-function updateStructure(rec1,rec2){
-	if(contains(rec1, rec2)) {
-		const relativeDim = relative(rec1, rec2);
-		return { ...rec1, children : [relativeDim]};
-	} else if (contains(rec2, rec1)) {
-		const relativeDim = relative(rec2, rec1);
-		return { ...rec2, children: [relativeDim]};
+function updateStructure(recA,recB){
+	if(contains(recA, recB)) {
+		const relativeDim = relative(recA, recB);
+		return { ...recA, children : [relativeDim]};
+	} else if (contains(recB, recA)) {
+		const relativeDim = relative(recB, recA);
+		return { ...recB, children: [relativeDim]};
 	} else {
-		return { ...rec1};
+		return { ...recA};
 	}
 }
 
-function relative(rec1, rec2) {
-	const recAn = normalize(rec1);
-	const recBn = normalize(rec2);
+function relative(recA, recB) {
+	const recAn = normalize(recA);
+	const recBn = normalize(recB);
 
 	const res = {
-		children: rec2.children
+		children: recB.children
 	}
 
-	if(rec2.top) {
+	if(recB.top) {
 		res.top = `${recBn.x1 - recAn.x1}px`;
 	}
-	if(rec2.left) {
+	if(recB.left) {
 		res.left = `${recBn.y1 - recAn.y2}px`;
 	}
-	if(rec2.height) {
-		res.height = rec2.height;
+	if(recB.height) {
+		res.height = recB.height;
 	}
-	if(rec2.width) {
-		res.width = rec2.width;
+	if(recB.width) {
+		res.width = recB.width;
 	}
-	if(rec2.bottom) {
+	if(recB.bottom) {
 		res.bottom = `${recAn.x2 - recBn.x2}px`;
 	}
-	if(rec2.left) {
+	if(recB.left) {
 		res.left = `${recAn.y2 - recBn.y2}px`;
 	}
 	return res;
 }
 
-function contains(rec1, rec2) {
-	const recAn = normalize(rec1);
-	const recBn = normalize(rec2);
+function contains(recA, recB) {
+	const recAn = normalize(recA);
+	const recBn = normalize(recB);
 
 	if(
 		recAn.x1 <= recBn.x1 
