@@ -30,7 +30,7 @@ function relative(recA, recB) {
 		res.top = `${recBn.x1 - recAn.x1}px`;
 	}
 	if(recB.left) {
-		res.left = `${recBn.y1 - recAn.y2}px`;
+		res.left = `${recBn.y1 - recAn.y1}px`;
 	}
 	if(recB.height) {
 		res.height = recB.height;
@@ -41,8 +41,8 @@ function relative(recA, recB) {
 	if(recB.bottom) {
 		res.bottom = `${recAn.x2 - recBn.x2}px`;
 	}
-	if(recB.left) {
-		res.left = `${recAn.y2 - recBn.y2}px`;
+	if(recB.right) {
+		res.right = `${recAn.y2 - recBn.y2}px`;
 	}
 	return res;
 }
